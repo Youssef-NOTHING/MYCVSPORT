@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Upload - Sport Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+        }
+        .upload-container {
+            max-width: 420px;
+            margin: 5rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(30,42,56,0.10);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .upload-container h2 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: #1e2a38;
+        }
+        #upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        #media-file {
+            font-size: 1.1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #b0c4de;
+            width: 100%;
+        }
+        #upload-form button {
+            background: linear-gradient(90deg, #1e2a38 60%, #29405c 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(30,42,56,0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        #upload-form button:hover {
+            background: linear-gradient(90deg, #29405c 60%, #1e2a38 100%);
+        }
+        #upload-status {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: #1e2a38;
+        }
+        #media-gallery {
+            margin-top: 2rem;
+        }
+        .media-gallery-item img,
+        .media-gallery-item video {
+            max-width: 320px;
+            max-height: 220px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(30,42,56,0.10);
+            display: block;
+            margin: 0 auto;
+        }
+        .media-gallery-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        #media-gallery button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #c0392b;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2><i class="fas fa-upload"></i> Private Upload</h2>
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" id="media-file" name="media" accept="image/*,video/*" multiple required>
+            <button type="submit"><i class="fas fa-upload"></i> Upload</button>
+        </form>
+        <div id="upload-status"></div>
+    </div>
+    <div id="media-gallery" style="margin-top:2rem;"></div>
+    <div style="text-align:center; margin-top:2rem;">
+        <a href="index.html" style="background:#1e2a38;color:#fff;padding:0.75rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(30,42,56,0.08);">Go to Home Page</a>
+    </div>
+    <script>
+    const uploadForm = document.getElementById('upload-form');
+    const mediaFileInput = document.getElementById('media-file');
+    const uploadStatus = document.getElementById('upload-status');
+    const mediaGallery = document.getElementById('media-gallery');
+
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const files = mediaFileInput.files;
+        if (!files.length) {
+            uploadStatus.textContent = 'Please select at least one file.';
+            return;
+        }
+        const formData = new FormData();
+        for (let file of files) {
+            formData.append('media', file);
+        }
+        uploadStatus.textContent = 'Uploading...';
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+            if (res.ok) {
+                uploadStatus.textContent = 'Upload successful!';
+                mediaFileInput.value = '';
+                loadGallery();
+            } else {
+                uploadStatus.textContent = 'Upload failed.';
+            }
+        } catch (err) {
+            uploadStatus.textContent = 'Error uploading file.';
+        }
+    });
+
+    async function loadGallery() {
+        mediaGallery.innerHTML = '<p>Loading...</p>';
+        try {
+            const res = await fetch('/api/media');
+            const media = await res.json();
+            if (!media.length) {
+                mediaGallery.innerHTML = '<p style="text-align:center;color:#888;">No media uploaded yet.</p>';
+                return;
+            }
+            mediaGallery.innerHTML = '';
+            media.forEach(file => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'media-gallery-item';
+                if (file.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = file.url;
+                    img.alt = file.filename;
+                    wrapper.appendChild(img);
+                } else if (file.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = file.url;
+                    video.controls = true;
+                    wrapper.appendChild(video);
+                }
+                // Delete button
+                const delBtn = document.createElement('button');
+                delBtn.textContent = 'Delete';
+                delBtn.style.position = 'absolute';
+                delBtn.style.top = '10px';
+                delBtn.style.right = '10px';
+                delBtn.style.background = '#c0392b';
+                delBtn.style.color = '#fff';
+                delBtn.style.border = 'none';
+                delBtn.style.borderRadius = '6px';
+                delBtn.style.padding = '0.5rem 1rem';
+                delBtn.style.cursor = 'pointer';
+                delBtn.onclick = async () => {
+                    if (confirm('Delete this file?')) {
+                        await fetch(`/api/media/${file.filename}`, { method: 'DELETE' });
+                        loadGallery();
+                    }
+                };
+                wrapper.appendChild(delBtn);
+                mediaGallery.appendChild(wrapper);
+            });
+        } catch (err) {
+            mediaGallery.innerHTML = '<p style="color:red;">Error loading media.</p>';
+        }
+    }
+    // Initial load
+    loadGallery();
+    </script>
+</body>
+</html>
