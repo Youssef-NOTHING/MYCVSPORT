@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="hero">
+            <div class="hero-bg-video" id="hero-video-container">
+                <!-- Color Overlay Options -->
+                <div class="video-overlay" id="video-overlay"></div>
+                
+                <!-- Multiple Video Sources for Quality -->
+                <video id="hero-video" autoplay muted loop playsinline preload="metadata" 
+                       poster="/me.jpg" class="hero-video-element">
+                    <source src="uploads\hard.mp4" type="video/mp4" data-quality="high">
+                    <source src="uploads\hard.mp4" type="video/mp4" data-quality="low">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- Static Fallback Image for Slow Connections -->
+                <img id="video-fallback" src="/uploads/me.jpg" alt="Basketball Background" 
+                     class="video-fallback-img" style="display:none;">
+                
+                <!-- Video Controls (Hidden by default, shown on hover) -->
+                <div class="video-controls" id="video-controls">
+                    <button id="play-pause-btn" class="control-btn" title="Play/Pause">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="mute-btn" class="control-btn" title="Mute/Unmute">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                    <div class="overlay-selector">
+                        <button class="overlay-btn active" data-overlay="none" title="No Overlay"></button>
+                        <button class="overlay-btn" data-overlay="dark" title="Dark Overlay"></button>
+                        <button class="overlay-btn" data-overlay="blue" title="Blue Overlay"></button>
+                        <button class="overlay-btn" data-overlay="orange" title="Orange Overlay"></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-content" id="hero-content">
+                
+                <h1><i class="fas fa-basketball-ball"></i> My Sport Portfolio</h1>
+                <p class="hero-sub">Welcome to my official sports portfolio. Discover my journey, achievements, and passion for the game!</p>
+                <a href="#testimonials" class="hero-btn">See My Testimonials</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <!-- Profile Section -->
+        <section id="profile" class="card profile-card profile-flex">
+            <div class="profile-bio">
+                <h2 id="name">Youssef Boukhmiss</h2>
+                <p id="bio">This is a short bio that defines you as an athlete. Write about your passion, achievements, and what makes you unique.</p>
+            </div>
+        </section>
+        <!-- Info Section -->
+        <section id="info" class="card info-card info-modern">
+            <h2><i class="fas fa-id-card"></i> Player Profile</h2>
+            <div class="info-modern-grid">
+                <div>
+                    <span class="info-label">Name:Boukhmiss</span>
+                    <span class="info-value" id="name">Youssef Boukhmiss</span>
+                </div>
+                <div>
+                    <span class="info-label">Age:19</span>
+                    <span class="info-value" id="age">19</span>
+                </div>
+                <div>
+                    <span class="info-label">Height:</span>
+                    <span class="info-value" id="height">173 cm</span>
+                </div>
+                <div>
+                    <span class="info-label">Weight:</span>
+                    <span class="info-value" id="weight">63 kg</span>
+                </div>
+                <div>
+                    <span class="info-label">Position:</span>
+                    <span class="info-value" id="position">Forward</span>
+                </div>
+                <div>
+                    <span class="info-label">Contact:</span>
+                    <span class="info-value"><a href="mailto:youssefboukhmiss44@gmail.com">youssefboukhmiss44@gmail.com</a></span>
+                </div>
+            </div>
+        </section>
+        <!-- Media Section -->
+        <section id="media" class="card">
+            <h2><i class="fas fa-photo-video"></i> Court Gallery & Reels</h2>
+            <div class="media-switch">
+                <button id="show-photos" class="active">Photos</button>
+                <button id="show-videos">Videos</button>
+            </div>
+            <div id="photos" class="media-grid"></div>
+            <div id="videos" class="media-grid" style="display:none;"></div>
+        </section>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="card">
+            <h2><i class="fas fa-comments"></i> My Testimonials</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="profile-container">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Coach John" class="testimonial-profile">
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Coach John Martinez</h4>
+                            <span class="testimonial-role">Head Coach</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Youssef is a dedicated athlete with exceptional leadership skills. His commitment to excellence inspires the entire team."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="profile-container">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face" alt="Teammate Alex" class="testimonial-profile">
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Alex Johnson</h4>
+                            <span class="testimonial-role">Team Captain</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Always gives 100% on and off the court. A true team player who elevates everyone's performance."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="profile-container">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Coach Sarah" class="testimonial-profile">
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Williams</h4>
+                            <span class="testimonial-role">Skills Coach</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Shows impressive improvement every season. His work ethic and determination are remarkable."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="profile-container">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Trainer Mike" class="testimonial-profile">
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Mike Thompson</h4>
+                            <span class="testimonial-role">Fitness Trainer</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Works hard and motivates others to do the same. A natural leader who sets the standard for dedication."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="profile-container">
+                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face" alt="Teammate Lisa" class="testimonial-profile">
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Lisa Rodriguez</h4>
+                            <span class="testimonial-role">Teammate</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Great communicator and team player. Always ready to support teammates and contribute to success."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="profile-container">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Coach David" class="testimonial-profile">
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>David Chen</h4>
+                            <span class="testimonial-role">Assistant Coach</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Has a winning mentality and never gives up. His persistence and positive attitude are contagious."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Achievements Section -->
+        <section id="achievements" class="card">
+            <h2><i class="fas fa-trophy"></i> Achievements</h2>
+            <ul class="achievements-list">
+                <li>2nd Place - Regional 5v5 Competition 2022</li>
+                <li>2nd Place - Regional 3x3 Junior Competition</li>
+                <li>2nd Place with Team in Senior 2nd Division</li>
+                <li>Semi-finalist with University Team</li>
+            </ul>
+        </section>
+        <!-- Academic Info Section -->
+        <section id="academic" class="card">
+            <h2><i class="fas fa-graduation-cap"></i> Academic Info</h2>
+            <div class="academic-details">
+                <div><strong>School:</strong> Euromed University</div>
+                <div><strong>Program:</strong> EIDIA - School of Digital Engineering and Artificial Intelligence</div>
+                <div><strong>Grade:</strong> 12</div>
+                <div><strong>GPA:</strong> 3.8</div>
+                <!-- Add more academic info here -->
+            </div>
+        </section>
+        <!-- Goals Section -->
+        <section id="goals" class="card">
+            <h2><i class="fas fa-bullseye"></i> My Basketball Goals</h2>
+            <div class="goals-container">
+                <div class="goal-category">
+                    <h3><i class="fas fa-users"></i> Team Aspirations</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-map-marker-alt"></i> Find a competitive basketball team in Fes or Europe</li>
+                        <li><i class="fas fa-trophy"></i> Join a professional or semi-professional league</li>
+                        <li><i class="fas fa-handshake"></i> Connect with basketball networks in Morocco and Europe</li>
+                    </ul>
+                </div>
+                
+                <div class="goal-category">
+                    <h3><i class="fas fa-basketball-ball"></i> Skills Development</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-crosshairs"></i> Become one of the best shooters in my league</li>
+                        <li><i class="fas fa-chart-line"></i> Achieve 90%+ free throw accuracy</li>
+                        <li><i class="fas fa-fire"></i> Master three-point shooting from all positions</li>
+                        <li><i class="fas fa-dumbbell"></i> Improve my vertical jump by 8cm this season</li>
+                    </ul>
+                </div>
+                
+                <div class="goal-category">
+                    <h3><i class="fas fa-briefcase"></i> Professional Support</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-user-tie"></i> Find a dedicated basketball manager/agent</li>
+                        <li><i class="fas fa-heart"></i> Partner with someone passionate about basketball development</li>
+                        <li><i class="fas fa-rocket"></i> Build connections for career advancement opportunities</li>
+                        <li><i class="fas fa-globe-europe"></i> Explore opportunities in European basketball leagues</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Schedule Section -->
+        <section id="schedule" class="card">
+            <h2><i class="fas fa-calendar-alt"></i> Upcoming Schedule</h2>
+            <ul class="schedule-list">
+                <li>Oct 10, 2025: City League Match vs. Rivals</li>
+                <li>Oct 18, 2025: Regional Tournament</li>
+                <li>Nov 2, 2025: College Tryout</li>
+                <!-- Add more events here -->
+            </ul>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="card">
+            <div class="contact-header">
+                <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+                <p class="contact-subtitle">Ready to discuss basketball opportunities? Let's connect!</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>youssefboukhmiss44@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>Available upon request</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Fes, Morocco / Europe</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-basketball-ball"></i>
+                        <div>
+                            <h4>Looking For</h4>
+                            <p>Team & Management Opportunities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <form id="contact-form" action="https://formspree.io/f/manpqdye" method="POST">
+                        <div class="form-group">
+                            <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="team-opportunity">Team Opportunity</option>
+                                <option value="management">Management/Agent Interest</option>
+                                <option value="tryout">Tryout Information</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message"><i class="fas fa-comment"></i> Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about the opportunity or how we can work together..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="contact-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                            <span class="btn-shine"></span>
+                        </button>
+                    </form>
+                    <div id="contact-status"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Navigation to Upload Page -->
+        <div style="text-align:center; margin-bottom:2rem;">
+            <a href="upload.html" style="background:#1e2a38;color:#fff;padding:0.75rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(30,42,56,0.08);">Go to Upload Page</a>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Your Name | Sport Portfolio</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
